@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AssignmentNet105_Shared.Models.Size>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Size</h1>
+
+<p>
+	<a asp-action="Create" class="btn btn-outline-success">Create New</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Status)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Status)
+				</td>
+				<td>
+					@Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+					@Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

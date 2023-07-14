@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AssignmentNet105_Shared.ViewModels.BillView>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Bill</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Account.UserName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Bill.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Voucher.VoucherName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Bill.CreateDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Bill.Status)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Account.UserName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Bill.Price)
+				</td>
+				<td>
+					@if (item.Voucher.VoucherName == "")
+					{
+						<span></span>
+					}
+					else
+					{
+						@Html.DisplayFor(modelItem => item.Voucher.VoucherName)
+					}
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Bill.CreateDate)
+				</td>
+				<td>
+					@if (item.Bill.Status == 0)
+					{
+						<p>Paid</p>
+					}
+					@if (item.Bill.Status == 1)
+					{
+						<p>Unpaid</p>
+					}
+				</td>
+				<td>
+					@Html.ActionLink("Details", "Index", "BillDetails", new { id=item.Bill.Id }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

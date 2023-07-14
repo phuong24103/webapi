@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AssignmentNet105_Shared.Models.Voucher>
+
+@{
+	ViewData["Title"] = "Index";
+	var roleId = ViewBag.RoleId;
+}
+
+<h1>Voucher</h1>
+
+<p>
+	@if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+	{
+		<a asp-action="Create" class="btn btn-outline-success" style="font-weight: bold; font-size: 17px;">Create New</a>
+	}
+</p>
+<table class="table">
+	<thead>
+		<tr>
+
+			<th>
+				@Html.DisplayNameFor(model => model.VoucherName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.PercenDiscount)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.TimeStart)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.TimeEnd)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Status)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.VoucherName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PercenDiscount)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.TimeStart)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.TimeEnd)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Status)
+				</td>
+				<td>
+					@if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+					{
+						@Html.ActionLink("Edit", "Edit", new {  id=item.Id }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+						@Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AssignmentNet105_Shared.ViewModels.BillDetailsView>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>BillDetails</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Products.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.BillDetails.Quantity)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.BillDetails.Prices)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Products.Manufacturer)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Products.ImageUrl)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Products.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.BillDetails.Quantity)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.BillDetails.Prices)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Products.Manufacturer)
+				</td>
+				<td>
+					<img src="~/images/items/@item.Products.ImageUrl?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM" style="width: 50px;">
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

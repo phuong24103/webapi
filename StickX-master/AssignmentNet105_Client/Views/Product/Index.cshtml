@@ -1,0 +1,118 @@
+﻿@model IEnumerable<AssignmentNet105_Shared.ViewModels.ProductView>
+
+@{
+    ViewData["Title"] = "Index";
+    var roleId = ViewBag.RoleId;
+}
+
+<p>
+    @if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+    {
+        <a asp-action="Create" class="btn btn-outline-success">Create</a>
+    }
+    @*<form class="input-group w-50 float-right " asp-action="Search" method="get">
+    <input type="text" class="form-control" placeholder="Search Product By Name" name="search" />
+    <div class="input-group-append">
+    <button class="btn btn-outline-success" style="font-weight: bold; font-size: 17px;" type="submit">Search</button>
+    </div>
+    </form>*@
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvailableQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Likes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                <span>Color</span>
+            </th>
+            @if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+            {
+                <th>
+                    <span>Size</span>
+                </th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvailableQuantity)
+                </td>
+                <td>
+                    <img src="~/images/items/@item.ImageUrl?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM" style="width: 50px;">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @if (item.Status == 0)
+                    {
+                        <p>Stocking</p>
+                    }
+                    @if (item.Status == 1)
+                    {
+                        <p>Out of stock</p>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Likes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color.Name)
+                </td>
+                @if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size.Name)
+                    </td>
+                }
+                <td>
+                    @if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+                    }
+                    @Html.ActionLink("Details", "Details", new { id=item.Id  }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+                    @if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Id  }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,151 @@
+﻿@using AssignmentNet105_Shared.Models;
+@model AssignmentNet105_Shared.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+    var roleId = ViewBag.RoleId;
+    var color = (ViewData["colors"] as List<Color>);
+    var size = (ViewData["sizes"] as List<Size>);
+}
+
+<style>
+    .image {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    #name {
+        font-size: 1.75rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        border: hidden;
+    }
+</style>
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-4" style="margin: auto;">
+            <img class="image" src="/images/items/@Model.ImageUrl?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM">
+            <div class="card">
+                <div class="card-header">
+                    <div class="caption text-center">
+                        Status
+                    </div>
+                </div>
+                <label class="card-body">
+                    @if (@Model.Status == 0)
+                    {
+                        <p>Stocking</p>
+                    }
+                    @if (@Model.Status == 1)
+                    {
+                        <p>Out of stock</p>
+                    }
+                </label>
+            </div>
+        </div>
+        <form asp-action="Create" asp-controller="CartDetails" class="col-4" style="margin-top: 30px; line-height:15px;">
+            <input readonly asp-for="Name" id="name" value="@Model.Name">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th>
+                            <label asp-for="ColorID" class="control-label" style="font-size: 20px">Color</label>
+                        </th>
+                        <th>
+                            <select asp-for="ColorID" class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                @foreach (var item in color)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </th>
+                        @*<th>
+                        <label class="control-label" style="font-size: 20px">Color</label>
+                        </th>
+                        <th>
+                        @foreach (var item in color)
+                        {
+                        <input asp-for="ColorID" type="radio" class="btn-check" name="colors" id="@item.Id" value="@item.Id" autocomplete="off">
+                        <label asp-for="ColorID" class="btn btn-outline-success" for="@item.Id">@item.Name</label>
+                        }
+                        </th>*@
+                    </tr>
+                    <tr>
+                        <th>
+                            <label asp-for="SizeID" class="control-label" style="font-size: 20px">Color</label>
+                        </th>
+                        <th>
+                            <select asp-for="SizeID" class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                @foreach (var item in size)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </th>
+                        @*<th>
+                        <label class="control-label" style="font-size: 20px">Size</label>
+                        </th>
+                        <td>
+                        @foreach (var item in size)
+                        {
+                        <input asp-for="SizeID" type="radio" class="btn-check" name="sizes" id="@item.Id" value="@item.Id" autocomplete="off">
+                        <label asp-for="SizeID" class="btn btn-outline-success" for="@item.Id">@item.Name</label>
+                        }
+                        </td>*@
+                    </tr>
+                </tbody>
+            </table>
+            <h5 style="color:red;">@Model.Price VND</h5>
+            <h5>Likes: @Model.Likes</h5>
+
+            <h5 class="text-muted" style="margin-bottom: 2rem">AvailableQuantity: @Model.AvailableQuantity</h5>
+            @if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a32") && Model.Status == 0)
+            {
+                <input type="submit" value="AddToCart" class="btn btn-success" style="margin-left: 10px;" />
+            }
+            @if (roleId != null)
+            {
+                <a asp-action="Like" asp-route-id="@Model.Id" class="btn btn-outline-success" style="margin-left: 10px;">Like</a>
+            }
+            @if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+            {
+                @Html.ActionLink("Edit", "Edit", new {  id= Model.Id  }, new { @class="btn btn-success", @style="margin-left: 10px;"})
+                @Html.ActionLink("Delete", "Delete", new { id= Model.Id  }, new { @class="btn btn-success", @style="margin-left: 10px;"})
+            }
+        </form>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="caption text-center">
+                        Product information
+                    </div>
+                </div>
+                <label class="card-body">
+                    @Model.Description
+                </label>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="caption text-center">
+                        Manufacturer
+                    </div>
+                </div>
+                <label class="card-body">
+                    @Model.Manufacturer
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div style="margin-top:20px;">
+	@Html.ActionLink("Edit", "Update", new {id = Model.Id }) |
+	<a asp-action="Index">Back to List</a>
+</div>*@

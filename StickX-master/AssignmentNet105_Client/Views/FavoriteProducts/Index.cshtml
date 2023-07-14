@@ -1,0 +1,125 @@
+﻿@model IEnumerable<AssignmentNet105_Shared.ViewModels.FavoriteProductsView>
+
+@{
+    ViewData["Title"] = "Index";
+	<link rel="stylesheet" href="~/css/Details_Index.css" asp-append-version="true" />
+	var roleId = ViewBag.RoleId;
+}
+
+<h1>All Favorites</h1>
+
+<div class="row" style="margin-top: 60px;">
+    @foreach (var item in Model)
+    {
+        <div class=" item col-xs-3 col-lg-3" st>
+            <div class="thumbnail">
+                <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Product.Id">
+                    @*<img class="group list-group-image">*@
+                    <p class="group inner list-group-item-text">
+                        <img src="/images/items/@item.Product.ImageUrl?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM">
+                    </p>
+                    <div class="caption">
+						<h5 class="group inner list-group-item-heading">
+                            @Html.DisplayFor(modelItem => item.Product.Name)
+						</h5>
+						<h6 class="text-muted" style="padding: 0 10px; margin-bottom: 20px;">@item.Product.Manufacturer</h6>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-7">
+                                <p class="lead" style="padding-left:5px; ">
+									<span style="color: red;">@item.Product.Price VND</span>
+                                </p>
+                            </div>
+                        </div>
+                        @*<span class="text-muted">AvailableQuantity @item.Product.AvailableQuantity</span>*@
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+@*<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.AvailableQuantity)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.Manufacturer)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.Status)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.Likes)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.Description)
+			</th>
+			<th>
+				<span>Size</span>
+			</th>
+			<th>
+				<span>Color</span>
+			</th>
+			<th>
+				<span>Image</span>
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.Price)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.AvailableQuantity)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.Manufacturer)
+				</td>
+				<td>
+					@if (item.Product.Status == 0)
+					{
+						<p>Stocking</p>
+					}
+					@if (item.Product.Status == 1)
+					{
+						<p>Out of stock</p>
+					}
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.Likes)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.Size.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.Color.Name)
+				</td>
+				<td>
+					<img src="~/images/@item.Product.ImageUrl?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM" width="50px">
+				</td>
+				<td>
+					@Html.ActionLink("Details", "Details", "Product", new { id = item.Product.Id }, new { @class="btn btn-outline-success", @style="margin-left: 10px;"})
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+*@

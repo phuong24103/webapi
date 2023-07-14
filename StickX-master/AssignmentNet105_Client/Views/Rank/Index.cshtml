@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AssignmentNet105_Shared.Models.Rank>
+
+@{
+	ViewData["Title"] = "Index";
+	var roleId = ViewBag.RoleId;
+}
+
+<h1>Rank</h1>
+
+<p>
+	@if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+	{
+		<a asp-action="Create" class="btn btn-outline-success" style="font-weight: bold; font-size: 17px;">Create New</a>
+	}
+</p>
+<table class="table">
+	<thead>
+		<tr>
+
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Point)
+			</th>
+			@if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+			{
+				<th></th>
+			}
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Point)
+				</td>
+				@if (roleId == Guid.Parse("9d76eb12-8c3c-4dcf-a389-4a807ecf0a31"))
+				{
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+						@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+					</td>
+				}
+			</tr>
+		}
+	</tbody>
+</table>

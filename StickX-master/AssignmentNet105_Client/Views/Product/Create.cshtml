@@ -1,0 +1,86 @@
+﻿@using AssignmentNet105_Shared.Models;
+@model AssignmentNet105_Shared.Models.Product
+
+@{
+	ViewData["Title"] = "Create";
+	var color = (ViewData["color"] as List<Color>);
+	var size = (ViewData["size"] as List<Size>);
+}
+
+<h1>Create</h1>
+
+<h4>ProductView</h4>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		{
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Price" class="control-label"></label>
+				<input asp-for="Price" class="form-control" />
+				<span asp-validation-for="Price" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="AvailableQuantity" class="control-label"></label>
+				<input asp-for="AvailableQuantity" class="form-control" />
+				<span asp-validation-for="AvailableQuantity" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Manufacturer" class="control-label"></label>
+				<input asp-for="Manufacturer" class="form-control" />
+				<span asp-validation-for="Manufacturer" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Description" class="control-label"></label>
+				<input asp-for="Description" class="form-control" />
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ColorID" class="control-label">Color</label>
+				<select asp-for="ColorID" class="form-select" aria-label="Default select example">
+					<option selected>Open this select menu</option>
+					@foreach (var item in color)
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+				</select>
+				<span asp-validation-for="ColorID" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="SizeID" class="control-label">Size</label>
+				<select asp-for="SizeID" class="form-select" aria-label="Default select example">
+					<option selected>Open this select menu</option>
+					@foreach (var item in size)
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+				</select>
+				<span asp-validation-for="SizeID" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ImageUrl" class="control-label"></label>
+				<input asp-for="ImageUrl" type="file" name="imageFile" accept="image/*" class="form-control" />
+				<span asp-validation-for="ImageUrl" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		}
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

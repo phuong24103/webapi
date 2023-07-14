@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AssignmentNet105_Shared.Models.Color>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Color</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success" style="font-weight: bold; font-size: 17px;">Create New</a>
+</p>
+
+<p>
+	<form class="input-group w-50 float-right " asp-action="search" method="get">
+		<input type="text" class="form-control" placeholder="Search color by name" name="search" />
+		<div class="input-group-append">
+            <button class="btn btn-outline-success" style="font-weight: bold; font-size: 17px;" type="submit">Tìm kiếm</button>
+		</div>
+	</form>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class="btn btn-outline-success", @style="margin-left: 10px; font-weight: bold; font-size: 17px;"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

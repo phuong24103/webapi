@@ -1,0 +1,95 @@
+﻿@model AssignmentNet105_Shared.ViewModels.AccountView
+
+@{
+    ViewData["Title"] = "GetAccountById";
+}
+
+<h1>Personal Information</h1>
+
+<div>
+    <h4>Account</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.UserName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Account.UserName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.DateOfBirth)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Account.DateOfBirth)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.Gender)
+        </dt>
+        <dd class = "col-sm-10">
+            @if(Model.Account.Gender == 0)
+            {
+                <span>Male</span>
+            }
+            else if(Model.Account.Gender == 1)
+            {
+                <span>FeMale</span>
+            }
+            else
+            {
+                <span>Other</span>
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Account.PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Account.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Account.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.Point)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Account.Point)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Account.Status == 0)
+            {
+                <span>Activate</span>
+            }
+            else
+            {
+                <span>Busy</span>
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            <span>Role</span>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Role.RoleName)
+        </dd>
+        <dt class = "col-sm-2">
+            <span>Rank</span>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rank.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Change Personal Information", "Edit", new { id = Model.Account.Id }, new { @class="btn btn-outline-success"})
+</div>

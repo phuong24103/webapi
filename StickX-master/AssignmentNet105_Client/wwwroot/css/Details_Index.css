@@ -1,0 +1,111 @@
+﻿body {
+}
+
+.thumbnail {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+}
+
+    .thumbnail > a {
+        text-decoration: none !important;
+    }
+
+    .thumbnail:hover {
+        -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+        -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+        box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    }
+
+        .thumbnail:hover::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            width: 70%;
+            left: 15%;
+            height: 100px;
+            bottom: 0;
+        }
+
+.item.list-group-item {
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin: 10px;
+}
+
+.caption > .list-group-item-heading {
+    padding: 10px 10px 0 10px;
+    color: black;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
+    background: #428bca;
+}
+
+/*.item.list-group-item .list-group-image {
+    margin-right: 10px;
+    padding: 0px;
+}*/
+
+.item.list-group-item .thumbnail {
+    margin-bottom: 0px;
+}
+
+.item.list-group-item .caption {
+    padding: 10px;
+}
+
+.item.list-group-item:nth-of-type(odd) {
+    background: #eeeeee;
+}
+
+.item.list-group-item:before, .item.list-group-item:after {
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item img {
+    float: left;
+}
+
+.item.list-group-item:after {
+    clear: both;
+}
+
+.list-group-item-text {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+    .list-group-item-text > img {
+        width: 100%;
+        border: 1px solid white;
+        margin: auto;
+    }
+
+.btn-1 {
+    width: 200px;
+    height: 60px;
+    border: 1px solid white;
+    margin: auto;
+    padding: 10px
+}
+
+    .btn-1 > .btn {
+    }

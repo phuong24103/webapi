@@ -1,0 +1,39 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+td {
+    max-width: 450px;
+}
+
+    td .form-control {
+        max-width: 50px;
+    }
+
+.header-layout{
+    margin-bottom: 20px;
+}
+
+    .header-layout > .navbar-expand-lg {
+        background-color: #D3D3D3;
+    }
+
+    .header-layout > .navbar-expand-sm {
+        border-bottom: 3px solid #D3D3D3 !important;
+    }
+
+.btn-outline-success, .btn-success {
+    font-weight: bold;
+    font-size: 17px;
+}
